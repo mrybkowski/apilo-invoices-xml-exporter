@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+<Invoices>
+  <Invoice>
+    <DocumentNumber>FV/1/01/2025</DocumentNumber>
+    <TotalWithTax>1353.00</TotalWithTax>
+    <TotalWithoutTax>1100.00</TotalWithoutTax>
+    <Currency>PLN</Currency>
+    <CreatedAt>2025-01-30T02:13:37+0100</CreatedAt>
+    <InvoicedAt>2025-01-30T00:00:00+0100</InvoicedAt>
+    <SoldAt>2025-01-30T00:00:00+0100</SoldAt>
+    <Receiver>
+      <Name>dasdasdasd</Name>
+      <Street>dasdas</Street>
+      <City>asdasd</City>
+      <ZipCode>05-825</ZipCode>
+      <Country>PL</Country>
+    </Receiver>
+    <Issuer>
+      <Name>dasdasd</Name>
+      <Street>asdasd</Street>
+      <City>asdasd</City>
+      <ZipCode>05-825</ZipCode>
+      <Country>PL</Country>
+    </Issuer>
+    <Items>
+      <Item>
+        <Name>ddasdasdasdasd</Name>
+        <PriceWithTax>123.00</PriceWithTax>
+        <PriceWithoutTax>100.00</PriceWithoutTax>
+        <Tax>23.00</Tax>
+        <Quantity>11</Quantity>
+      </Item>
+    </Items>
+  </Invoice>
+</Invoices>

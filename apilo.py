@@ -14,7 +14,7 @@ CLIENT_SECRET = os.getenv("CLIENT_SECRET")
 AUTH_TOKEN = os.getenv("AUTH_TOKEN")
 ACCESS_TOKEN = os.getenv("ACCESS_TOKEN")
 ENDPOINT = os.getenv("ENDPOINT")
-MONTH = os.getenv("MONTH")
+MONTH = int(os.getenv("MONTH"))
 
 def active_access_token():
     url = f"{ENDPOINT}/rest/auth/token/"
