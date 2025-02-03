@@ -2,20 +2,24 @@ import requests
 import base64
 import xml.etree.ElementTree as ET
 import xml.dom.minidom
+import os
 
+from dotenv import load_dotenv
 from datetime import datetime
 
-client_id = ""
-client_secret = ""
-auth_token = ""
-access_token = ""
-endpoint = ""
-month=1
+load_dotenv()
+
+CLIENT_ID = os.getenv("CLIENT_ID")
+CLIENT_SECRET = os.getenv("CLIENT_SECRET")
+AUTH_TOKEN = os.getenv("AUTH_TOKEN")
+ACCESS_TOKEN = os.getenv("ACCESS_TOKEN")
+ENDPOINT = os.getenv("ENDPOINT")
+MONTH = os.getenv("MONTH")
 
 def active_access_token():
-    url = f"{endpoint}/rest/auth/token/"
+    url = f"{ENDPOINT}/rest/auth/token/"
     
-    credentials = f"{client_id}:{client_secret}"
+    credentials = f"{CLIENT_ID}:{CLIENT_SECRET}"
     encoded_credentials = base64.b64encode(credentials.encode()).decode()
     headers = {
         "Authorization": f"Basic {encoded_credentials}",
@@ -25,7 +29,7 @@ def active_access_token():
     
     data = {
         "grantType": "authorization_code",
-        "token": auth_token
+        "token": AUTH_TOKEN
     }
     
     response = requests.post(url, json=data, headers=headers)
@@ -38,7 +42,7 @@ def active_access_token():
         return response.text
 
 def get_finanse_documents(access_token):
-    url = f"{endpoint}/rest/api/finance/documents/"
+    url = f"{ENDPOINT}/rest/api/finance/documents/"
     
     headers = {
         "Authorization": f"Bearer {access_token}",
@@ -93,13 +97,13 @@ def create_invoice_xml(documents, month_filter=None):
             ET.SubElement(item_element, "Quantity").text = str(item["quantity"])
         
     xml_str = xml.dom.minidom.parseString(ET.tostring(root)).toprettyxml(indent="  ")
-    with open(f"invoices-{month}.xml", "w", encoding="utf-8") as f:
+    with open(f"invoices-{MONTH}.xml", "w", encoding="utf-8") as f:
         f.write(xml_str)
 
 def main():
     active_access_token()
-    documents = get_finanse_documents(access_token)
-    create_invoice_xml(documents, month)
+    documents = get_finanse_documents(ACCESS_TOKEN)
+    create_invoice_xml(documents, MONTH)
 
 if __name__ == "__main__":
     main()
